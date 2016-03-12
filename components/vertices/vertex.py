@@ -15,8 +15,8 @@ class POLVertex:
         """
         self.label = label
         self.props = props
-        self._out = []
-        self._in = []
+        self.inE = []
+        self.outE = []
 
     def __str__(self):
         """
@@ -35,7 +35,7 @@ class POLVertex:
         retString += str(self.label)
         for k, v in self.props.items():
             retString += ',' + str(k), str(v)
-        for edge in self._out:
+        for edge in self.outE:
             #TODO implement the edge string representation
             pass
 
