@@ -30,7 +30,7 @@ class POLVertex(object):
         self.inE = []
         self.outE = []
 
-    def connectToVertex(outV, edgeLabel = '', edgeProps = {}):
+    def connectToVertex(self, outV, edgeLabel = '', edgeProps = {}):
         """
         Connect the current POLVertex to another POLVertex
 
@@ -39,11 +39,14 @@ class POLVertex(object):
         @param POLVertex outV - the vertex you're connecting out to
         @param string edgeLabel - the label of the connecting edge
         @param dictionary edgeProps - the properties of the connecting edge
+        @return boolean - true if the connection succeeded
         """
 
         if not isinstance(outV, POLVertex):
             # If the object passed in isn't a POLVertex, raise an exception
             raise Exception("You can only create a connection to another POLVertex")
+
+        # Check if this vertex is already connected
 
         edge = POLEdge(edgeLabel, edgeProps)
         # The vertex that was passed in is an 'out' vertex from the point
@@ -55,6 +58,16 @@ class POLVertex(object):
         self.outE.push(edge)
 
         #TODO deal with duplicate connections
+
+    def hasOutVertex(self, vertex):
+        """
+        Figure out if self is connected to the passed vertex
+
+        @param POLVertex vertex - The vertex we are checking
+        @return boolean - true if it has the passed vertex as an out vertex, false otherwise
+        """
+        outVertices = (e.inV for e in self.outE)
+
 
     def __str__(self):
         """
