@@ -66,24 +66,20 @@ def test_init_correct_edge():
 
     label = 'label'
     props = {"some" : "value"}
-    outV = POLVertex('out', {"field", "value"})
-    inV = POLVertex('in', {"field", "value"})
 
-    edge = POLEdge(label, props, outV, inV)
+    edge = POLEdge(label, props)
 
     assert edge.label == 'label'
     assert edge.props == {'some' : 'value'}
-    assert edge.outV == outV
-    assert edge.inV == inV
+    assert edge.outV == None
+    assert edge.inV == None
 
 def test_init_incorrect_edge():
 
     label = 5
     props = True
-    outV = 'hello'
-    inV = {"something" : "else"}
 
-    edge = POLEdge(label, props, outV, inV)
+    edge = POLEdge(label, props)
 
     assert edge.label == ''
     assert edge.props == {}
