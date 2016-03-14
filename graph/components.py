@@ -47,6 +47,8 @@ class POLVertex(object):
             raise Exception("You can only create a connection to another POLVertex")
 
         # Check if this vertex is already connected
+        if self.hasOutVertex(outV):
+            pass
 
         edge = POLEdge(edgeLabel, edgeProps)
         # The vertex that was passed in is an 'out' vertex from the point
@@ -67,6 +69,10 @@ class POLVertex(object):
         @return boolean - true if it has the passed vertex as an out vertex, false otherwise
         """
         outVertices = (e.inV for e in self.outE)
+
+        #TODO implement
+
+        return False
 
 
     def __str__(self):
