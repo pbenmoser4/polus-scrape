@@ -57,7 +57,7 @@ class POLVertex(object):
 
 
 ##########################################################
-#   Polus Edge Base Class
+#   Polus Edge Base     Class
 ##########################################################
 
 class POLEdge(object):

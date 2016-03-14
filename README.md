@@ -1,6 +1,6 @@
 # Polus Scraper
 
-[Polus](https://en.wikipedia.org/wiki/Coeus) and his sister [Phoebe](https://en.wikipedia.org/wiki/Phoebe_(mythology) were the sources of all intelligence in the beginning of time. Phoebe of prophetic wisdom, and Polus of rational intelligence. Polus' hunger for the facts of the world was insatiable, and he traveled far and wide to expand the scope of his knowledge.
+[Polus](https://en.wikipedia.org/wiki/Coeus) and his sister [Phoebe](https://en.wikipedia.org/wiki/Phoebe_(mythology)) were the sources of all intelligence in the beginning of time. Phoebe of prophetic wisdom, and Polus of rational intelligence. Polus' hunger for the facts of the world was insatiable, and he traveled far and wide to expand the scope of his knowledge.
 
 ## Purpose
 
