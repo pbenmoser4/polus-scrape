@@ -13,43 +13,31 @@ def test_init_empty_vertex():
     assert v.props == {}
 
     # We should have `inE` and `outE` fields representing edges. Both should be empty
-    assert v.inE == []
-    assert v.outE == []
+    assert v.inE == {}
+    assert v.outE == {}
 
-def test_init_label_vertex():
+def test_init_correct_vertex():
+
     label = 'label'
-
-    v = POLVertex(label)
-
-    assert v.label == 'label'
-    assert v.props == {}
-    assert v.inE == []
-    assert v.outE == []
-
-def test_init_props_vertex():
-    props = {"field" : "value"}
-
-    v = POLVertex(props = props)
-
-    assert v.label == ''
-    assert v.props == {"field" : "value"}
-    assert v.inE == []
-    assert v.outE == []
-
-def test_init_label_props_vertex():
-    label = 'label'
-    props = {"field" : "value"}
+    props = {'field' : 'value'}
 
     v = POLVertex(label, props)
 
     assert v.label == 'label'
-    assert v.props == {"field" : "value"}
-    assert v.inE == []
-    assert v.outE == []
+    assert v.props == {'field' : 'value'}
+    assert v.inE == {}
+    assert v.outE == {}
 
 # Passing incorrect values during initialization
 
+# Creating two vertices at almost the same time should not have the same created_date
 
+def test_created_date_same():
+
+    v1 = POLVertex()
+    v2 = POLVertex()
+
+    assert v1.created_date != v2.created_date
 
 
 # Testing Edges

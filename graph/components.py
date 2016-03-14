@@ -1,6 +1,7 @@
 # Defining the basic edge and vertex classes
 
 from uuid import *
+from datetime import *
 
 ##########################################################
 #   Polus Vertex Base Class
@@ -25,10 +26,12 @@ class POLVertex(object):
         @param dictionary props - String -> value dictionary of vertex properties
         """
         self.__id = uuid4()
+        self.created_date = datetime.utcnow()
+        self.updated_date = self.created_date
         self.label = label if type(label) is str else None
         self.props = props if type(props) is dict else {}
-        self.inE = []
-        self.outE = []
+        self.inE = {}
+        self.outE = {}
 
     def connectToVertex(self, outV, edgeLabel = '', edgeProps = {}):
         """
