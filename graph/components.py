@@ -22,16 +22,20 @@ class POLVertex(object):
         """
         Initialize a POLVertex
 
+
+
         @param string label - the label of the vertex
         @param dictionary props - String -> value dictionary of vertex properties
         """
-        self.__id = uuid4()
-        self.created_date = datetime.utcnow()
-        self.updated_date = self.created_date
+
         self.label = label if type(label) is str else None
         self.props = props if type(props) is dict else {}
         self.inE = {}
         self.outE = {}
+
+        self.created_date = datetime.utcnow()
+        self.updated_date = self.created_date
+        self.__id = hash(self.label + str(self.created_date))
 
     def connectToVertex(self, outV, edgeLabel = '', edgeProps = {}):
         """
@@ -78,6 +82,7 @@ class POLVertex(object):
         return False
 
 
+
     def __str__(self):
         """
         Return a string representation of the vertex
@@ -108,6 +113,9 @@ class POLVertex(object):
     def __hash__(self):
         return hash(self.__id)
 
+    def __eq__(self, vertex):
+        return isinstance(vertex, POLVertex) and self.__id == vertex.__id
+
     def __json__(self):
         """
         Convert the vertex into a JSON representation
@@ -132,11 +140,15 @@ class POLEdge(object):
         @param string label - The label of this edge
         @param dictionary props - Properties dictionary for this POLEdge
         """
-        self.__id = uuid4()
+
         self.label = label if type(label) is str else ''
         self.props = props if type(props) is dict else {}
         self.inV = None
         self.outV = None
+
+        self.created_date = datetime.utcnow()
+        self.updated_date = self.created_date
+        self.__id = hash(self.label + str(self.created_date))
 
     def getValuesString(self):
 

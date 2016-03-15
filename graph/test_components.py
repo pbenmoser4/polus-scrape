@@ -38,6 +38,7 @@ def test_created_date_same():
     v2 = POLVertex()
 
     assert v1.created_date != v2.created_date
+    assert v1 != v2
 
 
 # Testing Edges

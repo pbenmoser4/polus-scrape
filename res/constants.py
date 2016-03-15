@@ -2,6 +2,8 @@
 
 class Constants:
     def __init__(self):
+
+        self.VERTEX_LABEL_NONE = 'no_label'
         self.VERTEX_LABEL_COMPANY = 'company'
         self.VERTEX_LABEL_WEBSITE = 'website'
         self.VERTEX_LABEL_PERSON = 'person'
