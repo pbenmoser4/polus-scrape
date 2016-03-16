@@ -35,7 +35,6 @@ class POLVertex(object):
 
         self.created_date = datetime.utcnow()
         self.updated_date = self.created_date
-        self._id = uuid4()
 
     def connectToVertex(self, outV, edgeLabel = '', edgeProps = {}):
         """
@@ -68,20 +67,37 @@ class POLVertex(object):
 
         #TODO deal with duplicate connections
 
-    def hasOutVertex(self, vertex):
+
+    def hasOutEdge(self, edge):
         """
-        Figure out if self is connected to the passed vertex
+        Figure out if the current POLVertex contains the given edge
 
-        @param POLVertex vertex - The vertex we are checking
-        @return boolean - true if it has the passed vertex as an out vertex, false otherwise
+        This connection is also a test for if the current vertex has a certain outVertex
+
+        @param POLEdge edge - the edge in the connection you're testing
+        @param POLVertex vertex - the vertex in the connection you're testing
         """
-        outVertices = (e.inV for e in self.outE)
 
-        #TODO implement
+        if not isinstance(edge, POLEdge):
+            raise Exception("You must pass a POLEdge as the 'edge' argument")
 
-        return False
+        outVertex = edge.outV
+        inVertex = edge.inV
+
+        if not outVertex == self:
+            # We're not even looking at an edge that comes out of this vertex, so it can't possibly have this edge
+            return False
+
+        #TODO implement features that check whether the edge's label and props match any edges in the existing outE dictionary. If they do, check the vertex that that edge goes into, and see if it is the same as the one on the edge passed in.
+
+        pass
 
     def getOutVertices(self):
+        """
+        Get a list of vertices that the current vertex connects into
+
+        The list will simply be an array of vertex ids
+        """
         #TODO implement getOutVertices
         pass
 
@@ -116,10 +132,9 @@ class POLVertex(object):
 
         return retString
 
-    def __hash__(self):
-        return hash(self._id)
 
     def __eq__(self, vertex):
+        # Two vertices are equal if they have the same label and the same properties
         return isinstance(vertex, POLVertex) and self._id == vertex._id
 
     def __json__(self):
@@ -154,7 +169,6 @@ class POLEdge(object):
 
         self.created_date = datetime.utcnow()
         self.updated_date = self.created_date
-        self._id = uuid4()
 
     def getValuesString(self):
 
@@ -166,6 +180,3 @@ class POLEdge(object):
 
     def __str__(self):
         pass
-
-    def __hash__(self):
-        return hash(self._id)
