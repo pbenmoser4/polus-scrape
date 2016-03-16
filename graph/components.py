@@ -35,7 +35,7 @@ class POLVertex(object):
 
         self.created_date = datetime.utcnow()
         self.updated_date = self.created_date
-        self.__id = hash(self.label + str(self.created_date))
+        self._id = uuid4()
 
     def connectToVertex(self, outV, edgeLabel = '', edgeProps = {}):
         """
@@ -81,6 +81,12 @@ class POLVertex(object):
 
         return False
 
+    def getOutVertices(self):
+        #TODO implement getOutVertices
+        pass
+
+    def getInVertices(self):
+        #TODO implement getInVertices
 
 
     def __str__(self):
@@ -111,10 +117,10 @@ class POLVertex(object):
         return retString
 
     def __hash__(self):
-        return hash(self.__id)
+        return hash(self._id)
 
     def __eq__(self, vertex):
-        return isinstance(vertex, POLVertex) and self.__id == vertex.__id
+        return isinstance(vertex, POLVertex) and self._id == vertex._id
 
     def __json__(self):
         """
@@ -148,7 +154,7 @@ class POLEdge(object):
 
         self.created_date = datetime.utcnow()
         self.updated_date = self.created_date
-        self.__id = hash(self.label + str(self.created_date))
+        self._id = uuid4()
 
     def getValuesString(self):
 
@@ -162,4 +168,4 @@ class POLEdge(object):
         pass
 
     def __hash__(self):
-        return hash(self.__id)
+        return hash(self._id)
