@@ -52,10 +52,6 @@ class POLVertex(object):
             # If the object passed in isn't a POLVertex, raise an exception
             raise Exception("You can only create a connection to another POLVertex")
 
-        # Check if this vertex is already connected
-        if self.hasOutVertex(outV):
-            pass
-
         edge = POLEdge(edgeLabel, edgeProps)
         # The vertex that was passed in is an 'out' vertex from the point
         # of view of `self`, but, to the created edge, `self` is the 'out'
@@ -64,6 +60,8 @@ class POLVertex(object):
         edge.outV = self
         edge.inV = outV
         self.outE.push(edge)
+
+        
 
         #TODO deal with duplicate connections
 
@@ -103,7 +101,7 @@ class POLVertex(object):
 
     def getInVertices(self):
         #TODO implement getInVertices
-
+        pass
 
     def __str__(self):
         """
@@ -134,8 +132,16 @@ class POLVertex(object):
 
 
     def __eq__(self, vertex):
-        # Two vertices are equal if they have the same label and the same properties
-        return isinstance(vertex, POLVertex) and self._id == vertex._id
+        # Two vertices are equal if they have the same label and the same properties, the same out edges, and the same in edges
+        isVertex = isinstance(vertex, POLVertex)
+        hasSameLabel = self.label == vertex.label
+        hasSameProps = self.props == vertex.props
+        hasSameInEdges = self.inE == vertex.inE
+        hasSameOutEdges = self.outE == vertex.outE
+
+        equals = isVertex and hasSameLabel and hasSameProps and hasSameInEdges and hasSameOutEdges
+
+        return equals
 
     def __json__(self):
         """
@@ -180,3 +186,15 @@ class POLEdge(object):
 
     def __str__(self):
         pass
+
+    def __eq__(self, edge):
+        # Two edges are equal if they have the same label and the same properties, the same out vertex, and the same in vertex
+        isEdge = isinstance(vertex, POLEdge)
+        hasSameLabel = self.label == edge.label
+        hasSameProps = self.props == edge.props
+        hasSameInVertex = self.inV == edge.inV
+        hasSameOutVertex = self.outV == edge.outV
+
+        equals = isEdge and hasSameLabel and hasSameProps and hasSameInVertex and hasSameOutVertex
+
+        return equals
